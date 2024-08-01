@@ -23,7 +23,7 @@ public class Main {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
 
         while (true) {
-            System.out.println("¿Qué desea realizar? \n1. Nueva Compra \n2. Revisar disponibilidad total \n3. Revisar disponibilidad por sección \n4. Revisar la caja \n5. Salir");
+            System.out.println("Porfavor ingrese uno de los siguientes opciones: \n1. Comprar Tickets \n2. Revisar disponibilidad de asientos totales \n3. Revisar las disponibilidades en los diferentes sectores \n4. Revisar caja \n5. Salir \n ");
             int opc = sc.nextInt();
 
             switch (opc) {
@@ -32,13 +32,13 @@ public class Main {
                     Comprador comprador = new Comprador();
                     System.out.println("Ingrese su nombre: ");
                     comprador.setNombre_Compra(sc.next());
-                    System.out.println("Ingrese su teléfono: ");
+                    System.out.println("Ingrese su numero de teléfono: ");
                     comprador.setTelefono(sc.next());
-                    System.out.println("Ingrese su presupuesto para boletos: ");
+                    System.out.println("Ingrese su presupuesto maximo: ");
                     comprador.setPresupuesto(sc.nextInt());
 
                     Venta venta = new Venta();
-                    System.out.println("¿Cuántos boletos desea comprar?");
+                    System.out.println("Cuántos boletos desea comprar?");
                     int cantidadBoletos = sc.nextInt();
                     comprador.setCant_boletos(cantidadBoletos);
                     if (cantidadBoletos > 6) {
@@ -46,7 +46,7 @@ public class Main {
                         break;
                     }
 
-                    System.out.println("Seleccione la localidad: \n1. Localidad 1 (250$) \n2. Localidad 5 (575$) \n3. Localidad 10 (1720$)");
+                    System.out.println("Seleccione uno de los locales: \n1. Localidad 1 / 250$  \n2. Localidad 5 / 575$  \n3. Localidad 10 / 1720$ \n");
                     Localidad localidadSeleccionada = null;
                     switch (sc.nextInt()) {
                         case 1:
@@ -59,7 +59,7 @@ public class Main {
                             localidadSeleccionada = localidad10;
                             break;
                         default:
-                            System.out.println("Opción inválida");
+                            System.out.println("Opción inválido");
                             break;
                     }
 
@@ -83,16 +83,18 @@ public class Main {
                             ticket.setFecha(java.sql.Date.valueOf(fechaCompra));
                             ticket.setNumero(numTicket);
 
-                            System.out.println("Factura: "
+                            System.out.println("**************************************************"
+                                    + "\nFactura: "
                                     + "\nNombre: " + comprador.getNombre_Compra()
                                     + "\nTeléfono: " + comprador.getTelefono()
                                     + "\nCantidad de boletos: " + cantidadBoletos
                                     + "\nPrecio total: " + totalCompra
                                     + "\nNúmero de compra: " + numCompra
                                     + "\nFecha de compra: " + ticket.getFecha()
-                                    + "\nNúmero de ticket: " + ticket.getNumero());
+                                    + "\nNúmero de ticket: " + ticket.getNumero()
+                                    + "\n***************************************************");
                         } else {
-                            System.out.println("No tiene suficiente presupuesto para esta compra");
+                            System.out.println("No tiene suficiente presupuesto para poder realizar la compra");
                         }
                     } else {
                         System.out.println("No hay disponibilidad en esta sección");
@@ -100,7 +102,7 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.println("La disponibilidad total es: " + estadio.consultarDisponibilidadTotal() + " boletos en el estadio");
+                    System.out.println("La disponibilidad total es de: " + estadio.consultarDisponibilidadTotal() + " en el estadio");
                     break;
 
                 case 3:
